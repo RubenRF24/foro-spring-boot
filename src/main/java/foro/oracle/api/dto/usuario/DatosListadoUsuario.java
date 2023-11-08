@@ -1,10 +1,7 @@
 package foro.oracle.api.dto.usuario;
 
-import foro.oracle.api.model.Usuario;
+import foro.oracle.api.dto.topico.DatosListadoTopicos;
+import java.util.List;
 
-public record DatosListadoUsuario(String login, String email) {
-
-    public DatosListadoUsuario(Usuario usuario){
-        this(usuario.getLogin(), usuario.getEmail());
-    }
+public record DatosListadoUsuario(String login, String email, List<DatosListadoTopicos> topicoList) {
 }

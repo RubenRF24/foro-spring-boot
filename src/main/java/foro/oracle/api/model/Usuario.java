@@ -1,5 +1,6 @@
 package foro.oracle.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import foro.oracle.api.dto.usuario.DatosActualizarUsuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -12,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -36,6 +38,10 @@ public class Usuario implements UserDetails {
 
     @Column(name = "clave")
     private String clave;
+
+    @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Topico> topicoList = new ArrayList<>();
 
     public Usuario(String login, String email, String clave) {
         this.login = login;
